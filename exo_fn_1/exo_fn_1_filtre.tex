@@ -1,0 +1,130 @@
+\documentclass[a4paper, 11pt]{article}
+%
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[francais]{babel}
+\usepackage[top=1cm, bottom=1cm, left=1cm, right=2cm]{geometry}
+\usepackage{nopageno}
+\usepackage{listings}
+%
+\newcommand{\env}[1]{\fbox{\begin{minipage}{\textwidth}#1\end{minipage}}}
+%
+\title{Exo Fn 1 Filtre}
+\author{Sarfraz \bsc{kapasi}}
+\date{05/11/2012}
+%
+\begin{document}
+%
+\maketitle
+%
+\section{Filtre à eau} % (fold)
+\label{sec:Filtre à eau}
+
+\subsection{Question} % (fold)
+\label{sub:Question}
+Définissez une fonction qui filtre les gouttes d'eau, d'après le programme donné dans la partie 5. Un filtre du chapitre précédent. Les spécifications de cette fonction sont définies par le dialogue qui suit :
+\begin{lstlisting} % (fold)
+
+    (filtre-o '(o o o ? o o o ! o o > o o o o))
+    (o o o o o o o o o o o o)
+\end{lstlisting}
+% subsection Question (end)
+\subsection{Réponse} % (fold)
+\label{sub:Réponse}
+\begin{lstlisting} % (fold)
+
+    (defun filtre-o (toFilter &aux drops)
+        (loop
+            (cond
+                ((not toFilter) (return drops))
+                ((equal 'o (car toFilter)) (push (pop toFilter) drops))
+            )
+        )
+    )
+\end{lstlisting}
+% subsection Réponse (end)
+
+% section Filtre à eau (end)
+
+\section{Filtre quelconque} % (fold)
+\label{sec:Filtre quelconque}
+
+\subsection{Question} % (fold)
+\label{sub:Question}
+Généralisez cette fonction pour fabriquer une fonction qui trie n'importe quel élément, pas seulement des gouttes d'eau (des o), d'après les spécifications suivantes :
+
+\begin{lstlisting} % (fold)
+
+    (filtre 'o '(o o o ? o o o ! o o > o o o o))
+    (o o o o o o o o o o o o)
+
+    (filtre 'a '(a a a b a b a d c e a a))
+    (a a a a a a a)
+\end{lstlisting}
+% subsection Question (end)
+\subsection{Réponse} % (fold)
+\label{sub:Réponse}
+\begin{lstlisting} % (fold)
+
+    (defun filtre (toFilter elem &aux stack)
+        (loop
+            (cond
+                ((not toFilter) (return stack))
+                ((equal elem (car toFilter)) (push (pop toFilter) stack))
+            )
+        )
+    )
+\end{lstlisting}
+% subsection Réponse (end)
+
+% section Filtre quelconque (end)
+
+\section{Inversion d'une liste} % (fold)
+\label{sec:Inversion d'une liste}
+
+\subsection{Question} % (fold)
+\label{sub:Question}
+En vous inspirant de l'exercice Un petit programme du chapitre précédent, écrivez une fonction qui inverse les éléments d'une liste, d'après les spécifications suivantes :
+\begin{lstlisting} % (fold)
+
+    (inverse '(a b c d e))
+    (e d c b a)
+\end{lstlisting}
+% subsection Question (end)
+\subsection{Réponse} % (fold)
+\label{sub:Réponse}
+\begin{lstlisting} % (fold)
+
+    (defun inverse (list &aux rlist)
+        (loop
+            (cond ((not list) (return rlist)))
+            (push (pop list) rlist)
+        )
+    )
+\end{lstlisting}
+% subsection Réponse (end)
+
+% section Inversion d'une liste (end)
+
+\section{Une quesion} % (fold)
+\label{sec:Une quesion}
+
+\subsection{Question} % (fold)
+\label{sub:Question}
+La fonction test définie comme suit aura-t-elle un effet sur les symboles du toplevel ?
+\begin{lstlisting} % (fold)
+
+    (defun test (bassine) (setq seau '(o o o o o o)) (pop seau))
+\end{lstlisting}
+Si oui, lequel ?
+% subsection Question (end)
+\subsection{Réponse} % (fold)
+\label{sub:Réponse}
+Oui, cette fonction réinitialise la valeur de seau à chaque appel.
+% subsection Réponse (end)
+
+% section Une quesion (end)
+%
+\end{document}
+

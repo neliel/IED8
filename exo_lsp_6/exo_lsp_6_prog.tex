@@ -1,0 +1,43 @@
+\documentclass[a4paper, 11pt]{article}
+%
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[francais]{babel}
+\usepackage[top=1cm, bottom=1cm, left=1cm, right=2cm]{geometry}
+\usepackage{nopageno}
+\usepackage{listings}
+\usepackage{graphicx}
+%
+\newcommand{\env}[1]{\fbox{\begin{minipage}{\textwidth}#1\end{minipage}}}
+%
+\title{Exo Lsp 6 Prog}
+\author{Sarfraz \bsc{kapasi}}
+\date{04/11/2012}
+%
+\begin{document}
+%
+\maketitle
+%
+\section{Programme à faire}
+\subsection{Question}
+Partez de :
+\begin{lstlisting}
+(setq seau '(a b c d e f))
+(setq bassine nil)
+\end{lstlisting}
+En vous inspirant de la partie sur un filtre, écrivez un programme qui verse du seau dans la bassine sans filtrer.
+Qu'observez-vous dans la bassine ?
+Que fait votre programme?
+\subsection{Réponses}
+\begin{lstlisting}
+(loop
+    (cond
+        ((not seau) (return bassine)))
+    (push (pop seau) bassine))
+\end{lstlisting}
+La bassine se rempli des éléments du seau à mesure que celui-ci se vide.
+Le programme codé prends les éléments de la liste seau et en rends l'inverse dans la liste bassine.
+%
+\end{document}
+

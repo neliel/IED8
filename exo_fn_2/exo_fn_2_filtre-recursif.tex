@@ -1,0 +1,122 @@
+\documentclass[a4paper, 11pt]{article}
+%
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[francais]{babel}
+\usepackage[top=1cm, bottom=1cm, left=1cm, right=2cm]{geometry}
+\usepackage{nopageno}
+\usepackage{listings}
+%
+\newcommand{\env}[1]{\fbox{\begin{minipage}{\textwidth}#1\end{minipage}}}
+%
+\title{Exo Fn 2 Filtre-récursif}
+\author{Sarfraz \bsc{kapasi}}
+\date{06/11/2012}
+%
+\begin{document}
+%
+\maketitle
+%
+\section{Une fonction qui filtre o dans une liste} % (fold)
+\label{sec:Une fonction qui filtre o dans une liste}
+\subsection{Question} % (fold)
+\label{sub:Question}
+Ecrire récursivement la fonction suivante :
+\begin{lstlisting} % (fold)
+
+    (filtre-o '(o o o ? o o o ! o o o))
+    (o o o o o o o o o o)
+\end{lstlisting}
+% subsection Question (end)
+\subsection{Réponse} % (fold)
+\label{sub:Réponse}
+\begin{lstlisting} % (fold)
+
+    (defun filtre-o (liste)
+        (cond
+            ((not liste) nil)
+            ((equal (car liste) 'o) (cons 'o (filtre-o (cdr liste))))
+            (t (filtre-o (cdr liste)))))
+\end{lstlisting}
+% subsection Réponse (end)
+
+% section Une fonction qui filtre o dans une liste (end)
+
+\section{Une fonction qui filtre un élément donné dans une liste} % (fold)
+\label{sec:Une fonction qui filtre un élément donné dans une liste}
+\subsection{Question} % (fold)
+\label{sub:Question}
+Ecrire récursivement la fonction suivante :
+\begin{lstlisting} % (fold)
+
+    (filtre 'a '(a a a ? a ! a ? a a))
+    (a a a a a a a)
+\end{lstlisting}
+% subsection Question (end)
+\subsection{Réponse} % (fold)
+\label{sub:Réponse}
+\begin{lstlisting} % (fold)
+
+    (defun filtre (liste elementAFilter)
+        (cond
+            ((not liste) nil)
+            ((equal (car liste) elementAFiltrer) (cons elementAFiltrer (filtre (cdr liste))))
+            (t (filte (cdr liste)))))
+\end{lstlisting}
+% subsection Réponse (end)
+
+% section Une fonction qui filtre un élément donné dans une liste (end)
+
+\section{Une fonction qui élimine tous les o d'une liste} % (fold)
+\label{sec:Une fonction qui élimine tous les o d'une liste}
+\subsection{Question} % (fold)
+\label{sub:Question}
+Ecrire récursivement la fonction suivante :
+\begin{lstlisting} % (fold)
+
+    (elimine-o '(x o o ! o d o ? o a b))
+    (x ! d ? a b)
+\end{lstlisting}
+% subsection Question (end)
+\subsection{Réponse} % (fold)
+\label{sub:Réponse}
+\begin{lstlisting} % (fold)
+
+    (defun elimine-o (liste)
+        (cond
+            ((not liste) nil)
+            ((equal (car liste) 'o) (elimine-o (cdr liste)))
+            (t (cons (car liste) (elimine-o (cdr liste))))))
+\end{lstlisting}
+% subsection Réponse (end)
+
+% section Une fonction qui élimine tous les o d'une liste (end)
+
+\section{Une fonction qui élimine un élément donné d'une liste} % (fold)
+\label{sec:Une fonction qui élimine un élément donné d'une liste}
+\subsection{Question} % (fold)
+\label{sub:Question}
+Ecrire récursivement la fonction suivante :
+\begin{lstlisting} % (fold)
+
+    (elimine  'a '(x a a ! a d a ? a a b))
+    (x ! d ? b)
+\end{lstlisting}
+% subsection Question (end)
+\subsection{Réponse} % (fold)
+\label{sub:Réponse}
+\begin{lstlisting} % (fold)
+
+    (defun elimine (liste elementAEliminer)
+        (cond
+            ((not liste) nil)
+            ((equal (car liste) elementaEliminer) (elimine (cdr liste)))
+            (t (cons elementAEliminer (elimine (cdr liste))))))
+\end{lstlisting}
+% subsection Réponse (end)
+
+% section Une fonction qui élimine un élément donné d'une liste (end)
+%
+\end{document}
+

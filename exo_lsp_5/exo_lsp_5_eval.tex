@@ -1,0 +1,113 @@
+\documentclass[a4paper, 11pt]{article}
+%
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[francais]{babel}
+\usepackage[top=1cm, bottom=1cm, left=1cm, right=2cm]{geometry}
+\usepackage{nopageno}
+\usepackage{listings}
+\usepackage{graphicx}
+%
+\newcommand{\env}[1]{\fbox{\begin{minipage}{\textwidth}#1\end{minipage}}}
+%
+\title{Exo Lsp 5 Eval }
+\author{Sarfraz \bsc{kapasi}}
+\date{03/11/2012}
+%
+\begin{document}
+%
+\maketitle
+%
+\section{Effets de set}
+\subsection{Question}
+Voici une série d'évaluations de set, qui lient (ou tentent de lier) un nom à une valeur;
+On supposera qu'elles ont toutes été faites dans le même contexte, avec les mêmes liaisons :
+\begin{itemize}
+    \item le nom foo lié à la valeur bar,
+    \item le nom bar lié à la valeur zorglub,
+    \item le nom zorglub lié à la valeur 10.
+\end{itemize}
+Dans chaque cas :
+\begin{itemize}
+    \item indiquez quel est le nom qu'on a tenté de lier ;
+    \item indiquez comment se calcule la valeur qu'on a tenté de lier ;
+    \item s'il y a une erreur (ou plusieurs) indiquez pourquoi (précisez le processus qui a provoqué l'erreur).\\
+\end{itemize}
+\begin{enumerate}
+    \item (set 'foo (cons (eval bar) foo))
+    \item (set foo (cons 'bar (eval foo)))
+    \item (set foo (cons (eval foo) (eval foo)))
+    \item (set bar (+ 3 (eval bar)))
+    \item (set 'bar (+ 3 (eval foo)))
+    \item (set (eval foo) (+ 3 (eval (eval foo))))
+\end{enumerate}
+
+\subsection{Réponses}
+\begin{enumerate}
+    \item \begin{itemize}
+            \item nom : foo
+            \item valeur : (10 . bar)
+          \end{itemize}
+    \item \begin{itemize}
+            \item nom : bar
+            \item valeur : (bar . zorglub)
+          \end{itemize}
+    \item \begin{itemize}
+            \item nom : bar
+            \item valeur : (zorglub . zorglub)
+          \end{itemize}
+    \item \begin{itemize}
+            \item nom : zorglub
+            \item valeur : 13
+          \end{itemize}
+    \item \begin{itemize}
+            \item nom : bar
+            \item valeur : obtenue par l'addition de 3 et de l'evaluation de foo
+            \item il y a une erreur causée par le fait que l'évaluation de foo n'est pas un nombre
+          \end{itemize}
+    \item \begin{itemize}
+            \item nom : zorglub
+            \item valeur : 13
+          \end{itemize}
+\end{enumerate}
+
+\section{Construction et évaluation d'un programme}
+\subsection{Question}
+\subsubsection{Question A}
+Soit le bout de code suivant :
+\begin{lstlisting}
+(loop (cond ((not seau) (return))) (pop seau))
+\end{lstlisting}
+Que fait ce bout de code ?
+\subsubsection{Question B}
+Ecrivez un programme qui écrive le programme donné en Question A, sous forme de liste, avec la fonction cons, et qui l'évalue.
+\subsection{Réponses}
+\subsubsection{Réponse A}
+Le bout de code donné vide la liste seau en argument de tout ses éléments
+\subsubsection{Réponse B}
+\begin{lstlisting}
+(eval
+    (cons
+        'loop
+        (cons
+            (cons
+                'cond
+                (cons
+                    (cons
+                        (cons
+                            'not
+                            (cons 'seau nil))
+                        (cons
+                            (cons 'return nil)
+                            nil))
+                    nil))
+            (cons
+                (cons
+                    'pop
+                    (cons 'seau nil))
+                nil))))
+\end{lstlisting}
+%
+\end{document}
+
