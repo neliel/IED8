@@ -12,50 +12,42 @@
 %
 \title{Exo SD 2 Points}
 \author{Sarfraz \bsc{kapasi}}
-\date{31/10/2012}
+\date{14/02/2013}
 %
 \begin{document}
 %
 \maketitle
 %
 \section{Conversion de doublets en représentation à points}
-\subsection{Question}
-Reprenez les schémas à doublet de la première partie des exercices sur la représentation interne des listes et donnez leur représentation à points\\\\
-1.\includegraphics[height=120pt, width=180pt]{Pointeurs_Exo1.png}  2.\includegraphics[height=120pt, width=180pt]{Pointeurs_Exo2.png}\\
-3.\includegraphics[height=120pt, width=180pt]{Pointeurs_Exo3.png}  4.\includegraphics[height=120pt, width=180pt]{Pointeurs_Exo4.png}\\
-5.\includegraphics[height=120pt, width=180pt]{Pointeurs_Exo5.png}  6.\includegraphics[height=120pt, width=180pt]{Pointeurs_Exo6.png}\\
 
-\subsection{Réponses}
+Reprenez les schémas à doublet de la première partie des exercices sur la représentation interne des listes et donnez leur représentation à points\\
+
 \begin{enumerate}
-    \item (c . ((b . (x . nil)) . (d . (a . nil))))
-    \item (x . (c . (b . ((a . nil) . (d . nil)))))
-    \item ((x . (d . nil)) . (a . (c . (b . nil))))
-    \item (c . ((a . (d . nil)) . (x . (b . nil))))
-    \item (c . ((d . nil) . (a . (b . (x . nil)))))
-    \item (c . (d . (b . ((x . (a . nil)) . nil))))
+  \item \includegraphics[height=120pt, width=180pt]{Pointeurs_Exo1.png}\\
+Réponse: (c . ((b . (x . nil)) . (d . (a . nil))))
+  \item \includegraphics[height=120pt, width=180pt]{Pointeurs_Exo2.png}\\
+Réponse: (x . (c . (b . ((a . nil) . (d . nil)))))
+  \item \includegraphics[height=120pt, width=180pt]{Pointeurs_Exo3.png}\\
+Réponse: ((x . (d . nil)) . (a . (c . (b . nil))))
+  \item \includegraphics[height=120pt, width=180pt]{Pointeurs_Exo4.png}\\
+Réponse: (c . ((a . (d . nil)) . (x . (b . nil))))
+  \item \includegraphics[height=120pt, width=180pt]{Pointeurs_Exo5.png}\\
+Réponse: (c . ((d . nil) . (a . (b . (x . nil)))))
+  \item \includegraphics[height=120pt, width=180pt]{Pointeurs_Exo6.png}\\
+Réponse: (c . (d . (b . ((x . (a . nil)) . nil))))
 \end{enumerate}
 
 \section{Conversion de représentation à points en doublets}
-\subsection{Question}
- Donnez (avec Dia) la représentation en doublets de pointeurs des exemples suivants :
-\begin{enumerate}
-    \item (a . ((b . c) . (x . nil)))
-    \item ((a . nil) . ((b . (c . nil)) . nil))
-    \item ((a . (b . nil)) . (d . (c . nil)))
-    \item (a . (b . (c . (d . nil))))
-    \item (a . ((b . nil) . (d . (c . nil))))
-    \item (a . (c . d . ((b . e) . nil)))
-\end{enumerate}
 
-\subsection{Réponses}
+ Donnez (avec Dia) la représentation en doublets de pointeurs des exemples suivants:\\
+
 \begin{enumerate}
-    \item -\\ \includegraphics[scale=0.3]{reponse1.png}
-    \item -\\ \includegraphics[scale=0.3]{reponse2.png}
-    \item -\\ \includegraphics[scale=0.3]{reponse3.png}
-    \item -\\ \includegraphics[scale=0.3]{reponse4.png}
-    \item -\\ \includegraphics[scale=0.3]{reponse5.png}
-    \item -\\ \includegraphics[scale=0.3]{reponse6.png}
+    \item (a . ((b . c) . (x . nil)))\\ \includegraphics[scale=0.3]{reponse1.png}
+    \item ((a . nil) . ((b . (c . nil)) . nil))\\ \includegraphics[scale=0.3]{reponse2.png}
+    \item ((a . (b . nil)) . (d . (c . nil)))\\ \includegraphics[scale=0.3]{reponse3.png}
+    \item (a . (b . (c . (d . nil))))\\ \includegraphics[scale=0.3]{reponse4.png}
+    \item (a . ((b . nil) . (d . (c . nil))))\\ \includegraphics[scale=0.3]{reponse5.png}
+    \item (a . (c . d . ((b . e) . nil)))\\ \includegraphics[scale=0.3]{reponse6.png}
 \end{enumerate}
 %
 \end{document}
-
