@@ -87,27 +87,14 @@ Ecrivez un programme qui écrive le programme donné en Question A, sous forme d
 Le bout de code donné vide la liste seau en argument de tout ses éléments
 \subsubsection{Réponse B}
 \begin{lstlisting}
-(eval
-    (cons
-        'loop
-        (cons
-            (cons
-                'cond
-                (cons
-                    (cons
-                        (cons
-                            'not
-                            (cons 'seau nil))
-                        (cons
-                            (cons 'return nil)
-                            nil))
-                    nil))
-            (cons
-                (cons
-                    'pop
-                    (cons 'seau nil))
-                nil))))
+(eval (cons 'loop
+            (cons (cons 'cond
+                        (cons (cons (cons 'not
+                                          (cons 'seau nil))
+                                    (cons (cons 'return nil) nil))
+                              nil))
+                  (cons (cons 'pop
+                              (cons 'seau nil)) nil))))
 \end{lstlisting}
 %
 \end{document}
-
