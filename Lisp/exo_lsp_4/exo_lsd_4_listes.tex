@@ -10,47 +10,43 @@
 \usepackage{graphicx}
 %
 \newcommand{\env}[1]{\fbox{\begin{minipage}{\textwidth}#1\end{minipage}}}
+\newcommand{\inred}[1]{\textcolor{red}{#1}}
 %
 \title{Exo Lsp 4 Listes}
 \author{Sarfraz \bsc{kapasi}}
-\date{02/11/2012}
+\date{28/04/2013}
 %
 \begin{document}
 %
 \maketitle
 %
 \section{Exercices sur l'accès aux listes}
-\subsection{Question}
 Donnez un nom à chacune des listes ci-dessous ; écrivez la méthode d'accès aux atomes indiqués en rouge :
 \begin{enumerate}
-    \item (a b x (c \textcolor{red}{d}))
-    \item ((\textcolor{red}{a}) x (b c))
-    \item (a (b \textcolor{red}{x}) c d)
-    \item (x (b) a (\textcolor{red}{d}))
-    \item ((a b \textcolor{red}{c} d x))
-    \item (((\textcolor{red}{a})) b c x)
-    \item ((a b c . \textcolor{red}{d}))
-    \item ((a x (a . \textcolor{red}{d}) c))
-\end{enumerate}
-\subsection{Réponses}
-\begin{enumerate}
-    \item (set 'liste2 '(a b x (c d)))\\
-          (cadadr (cddr liste2))
-    \item (set 'liste3 '((a) x (b c)))\\
-          (caar liste3)
-    \item (set 'liste4 '(a (b x) c d))\\
-          (cadadr liste4)
-    \item (set 'liste5 '(x (b) a (d)))\\
-          (caar (cdddr liste5))
-    \item (set 'liste6 '((a b c d x)))\\
-          (caddar liste6)
-    \item (set 'liste7 '(((a)) b c x))\\
-          (caaar liste7)
-    \item (set 'liste8 '((a b c . d)))\\
-          (cdddar liste8)
-    \item (set 'liste9 '((a x (a . d) c)))\\
-          (cdr (caddar liste9))
+    \item (x (b \inred{c}) a)\\
+Réponse: (set 'liste1 '(x (b c) a))\\
+         (cadadr liste1)
+    \item ((b c) (\inred{x}) a)\\
+Réponse: (set 'liste2 '((b c) (x) a)\\
+         (caadr liste2)
+    \item (a (\inred{x} b) c d)\\
+Réponse: (set 'liste3 '(a (x b) c d))\\
+         (caadr liste3)
+    \item (a (c) (\inred{d}) x)\\
+Réponse: (set 'liste4 '(a (c) (d) x))\\
+         (caaddr 'liste4)
+    \item ((a \inred{b} d x))\\
+Réponse: (set 'liste5 '((a b d x)))\\
+         (cadar liste5)
+    \item (b (c (\inred{a})) x)\\
+Réponse: (set 'liste6 '(b (c (a)) x))\\
+         (car (cadadr liste6))
+    \item (a (b c . \inred{d}))\\
+Réponse: (set 'liste7 '(a (b c . d)))\\
+         (cddadr liste7)
+    \item ((x (a . \inred{d}) b))\\
+Réponse: (set 'liste8 '((x (a . d) b)))\\
+         (cdadar liste8)
 \end{enumerate}
 %
 \end{document}
-
