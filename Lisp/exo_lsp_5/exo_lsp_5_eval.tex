@@ -13,88 +13,80 @@
 %
 \title{Exo Lsp 5 Eval }
 \author{Sarfraz \bsc{kapasi}}
-\date{03/11/2012}
+\date{\today}
 %
 \begin{document}
 %
 \maketitle
 %
 \section{Effets de set}
-\subsection{Question}
 Voici une série d'évaluations de set, qui lient (ou tentent de lier) un nom à une valeur;
 On supposera qu'elles ont toutes été faites dans le même contexte, avec les mêmes liaisons :
 \begin{itemize}
     \item le nom foo lié à la valeur bar,
     \item le nom bar lié à la valeur zorglub,
-    \item le nom zorglub lié à la valeur 10.
+    \item le nom zorglub lié à la valeur 5.
 \end{itemize}
 Dans chaque cas :
 \begin{itemize}
     \item indiquez quel est le nom qu'on a tenté de lier ;
     \item indiquez comment se calcule la valeur qu'on a tenté de lier ;
-    \item s'il y a une erreur (ou plusieurs) indiquez pourquoi (précisez le processus qui a provoqué l'erreur).\\
+    \item s'il y a une erreur (ou plusieurs) indiquez pourquoi (précisez le processus qui a provoqué l'erreur).
 \end{itemize}
 \begin{enumerate}
-    \item (set 'foo (cons (eval bar) foo))
-    \item (set foo (cons 'bar (eval foo)))
-    \item (set foo (cons (eval foo) (eval foo)))
-    \item (set bar (+ 3 (eval bar)))
-    \item (set 'bar (+ 3 (eval foo)))
-    \item (set (eval foo) (+ 3 (eval (eval foo))))
-\end{enumerate}
-
-\subsection{Réponses}
-\begin{enumerate}
-    \item \begin{itemize}
-            \item nom : foo
-            \item valeur : (10 . bar)
-          \end{itemize}
-    \item \begin{itemize}
-            \item nom : bar
-            \item valeur : (bar . zorglub)
-          \end{itemize}
-    \item \begin{itemize}
-            \item nom : bar
-            \item valeur : (zorglub . zorglub)
-          \end{itemize}
-    \item \begin{itemize}
-            \item nom : zorglub
-            \item valeur : 13
-          \end{itemize}
-    \item \begin{itemize}
-            \item nom : bar
-            \item valeur : obtenue par l'addition de 3 et de l'evaluation de foo
-            \item il y a une erreur causée par le fait que l'évaluation de foo n'est pas un nombre
-          \end{itemize}
-    \item \begin{itemize}
-            \item nom : zorglub
-            \item valeur : 13
-          \end{itemize}
+\item (set foo (cons (eval foo) bar))
+  \begin{itemize}
+  \item nom: bar
+  \item valeur: (zorglub . zorglub)
+  \end{itemize}
+\item (set 'foo (cons 'foo (eval foo)))
+  \begin{itemize}
+  \item nom:
+  \item valeur:
+  \end{itemize}
+\item (set bar (cons (eval bar) (eval foo)))
+  \begin{itemize}
+  \item nom: foo
+  \item valeur: (foo . zorglub)
+  \end{itemize}
+\item (set foo (+ (eval foo) 2))
+  \begin{itemize}
+  \item nom: bar
+  \item valeur: erreur, on essaie ici d'additionner zorglub et 2
+  \end{itemize}
+\item (set 'bar (+ (eval bar) 2))
+  \begin{itemize}
+  \item nom: bar
+  \item valeur: 7
+  \end{itemize}
+\item (set (eval 'bar) (+ (eval (eval foo)) 10))
+  \begin{itemize}
+  \item nom: zorglub
+  \item valeur: 15
+  \end{itemize}
 \end{enumerate}
 
 \section{Construction et évaluation d'un programme}
-\subsection{Question}
-\subsubsection{Question A}
+\subsection{Question A}
 Soit le bout de code suivant :
 \begin{lstlisting}
-(loop (cond ((not seau) (return))) (pop seau))
+(loop (cond ((not bassine) (return bassine))) (pop bassine))
 \end{lstlisting}
-Que fait ce bout de code ?
-\subsubsection{Question B}
+Que fait ce bout de code?\\
+Réponse: Ce bout de code vide et rends une bassine.
+\subsection{Question B}
 Ecrivez un programme qui écrive le programme donné en Question A, sous forme de liste, avec la fonction cons, et qui l'évalue.
-\subsection{Réponses}
-\subsubsection{Réponse A}
-Le bout de code donné vide la liste seau en argument de tout ses éléments
-\subsubsection{Réponse B}
 \begin{lstlisting}
 (eval (cons 'loop
             (cons (cons 'cond
                         (cons (cons (cons 'not
-                                          (cons 'seau nil))
-                                    (cons (cons 'return nil) nil))
-                              nil))
+                                          (cons 'bassine nil) )
+                                    (cons (cons 'return
+                                                (cons 'bassine nil) )
+                                          nil) )
+                              nil) )
                   (cons (cons 'pop
-                              (cons 'seau nil)) nil))))
+                              (cons 'bassine nil)) nil)) ))
 \end{lstlisting}
 %
 \end{document}
